@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Visitante;
 use App\Models\Historial;
-use Illuminate\Support\Carbon;
 
 class IngresoController extends Controller
 {
@@ -114,15 +113,15 @@ class IngresoController extends Controller
             });
         }
     
-        // Ordena los resultados por fecha_ingreso de forma descendente
-        $query->orderBy('fecha_ingreso', 'desc');
+        // Ordena los resultados por fecha_ingreso y hora_ingreso de forma descendente
+        $query->orderByDesc('fecha_ingreso')->orderByDesc('hora_ingreso');
     
-        // Obtén el historial paginado con 4 resultados por página
+        // Obtén el historial paginado con 10 resultados por página
         $historial = $query->paginate(10);
     
-        // Pasa $request a la vista
         return view('historial', ['historial' => $historial, 'request' => $request]);
     }
+    
     
     
     
@@ -154,7 +153,7 @@ class IngresoController extends Controller
             ]);
 
             // Mostrar mensajes para la confirmación de salida
-            $mostrarBotonSalida = false; // No mostrar el botón después de confirmar la salida
+            $mostrarBotonSalida = false; 
             $mensajeAgradecimiento = '¡Gracias por su visita!';
             $mensajeAdicional = 'Esperamos que haya tenido una visita exitosa.';
 

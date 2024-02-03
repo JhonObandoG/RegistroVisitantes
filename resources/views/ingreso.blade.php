@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Formulario de Ingreso</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/plugins/timepicker.js"></script>
@@ -12,26 +13,28 @@
     <style>
         body {
             font-family: 'Arial', sans-serif;
-            background-color: #f1f1f1;
-            margin: 150px 0;
+            background-color: #000;
+            margin: 30px 0;
+            padding: 20px;
             display: flex;
             align-items: center;
             justify-content: center;
-            height: 100vh;
+            min-height: 100vh;
         }
 
         form {
-            background-color: #fff;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            background-color: rgba(128, 0, 128, 0.1);
+            border-radius: 0;
+            box-shadow: 0 8px 16px rgba(128, 0, 128, 0.8);
             padding: 20px;
+            width: 100%;
             max-width: 400px;
             text-align: center;
-            margin: 0 20px;
         }
 
         h1 {
             margin-bottom: 20px;
+            color: #fff;
         }
 
         .form-group {
@@ -40,7 +43,7 @@
         }
 
         .form-group label {
-            color: #555;
+            color: #fff;
             display: block;
             margin-bottom: 5px;
         }
@@ -52,19 +55,21 @@
             padding: 10px;
             border: 1px solid #ccc;
             border-radius: 5px;
-            transition: border-color 0.3s ease;
-        }
-
-        .form-group textarea {
-            height: 100px;
-            resize: none;
+            transition: border-color 0.3s ease, color 0.3s ease;
         }
 
         .form-group input:focus,
         .form-group textarea:focus,
         .form-group select:focus {
-            border-color: #007bff;
+            border-color: #800080;
             outline: none;
+        }
+
+        .form-group input:-webkit-autofill,
+        .form-group textarea:-webkit-autofill,
+        .form-group select:-webkit-autofill {
+            box-shadow: 0 0 0 30px #fff inset ;
+            -webkit-text-fill-color: #000 ;
         }
 
         .form-group .form-control {
@@ -72,7 +77,7 @@
         }
 
         .btn-primary {
-            background-color: #007bff;
+            background-color: #800080;
             color: #fff;
             padding: 10px;
             border: none;
@@ -84,7 +89,7 @@
         }
 
         .btn-primary:hover {
-            background-color: #0056b3;
+            background-color: #5a005a;
         }
 
         .alert {
@@ -152,30 +157,30 @@
                 class="form-control">
         </div>
 
-
-        <label for="oficina">Oficina o Proyecto del que viene:</label>
-        <select name="oficina" id="oficina" required>
-            <option value="" disabled selected>Seleccione una opción</option>
-            <option value="Valencia_Producciones" {{ $visitante->oficina == 'Valencia_Producciones' ? 'selected' : '' }}>Valencia Producciones</option>
-            <option value="Stargate" {{ $visitante->oficina == 'Stargate' ? 'selected' : '' }}>Stargate</option>
-            <option value="SMARTFILMS" {{ $visitante->oficina == 'SMARTFILMS' ? 'selected' : '' }}>SMARTFILMS</option>
-            <option value="Visual_Music" {{ $visitante->oficina == 'Visual_Music' ? 'selected' : '' }}>Visual Music</option>
-            <option value="Mauricio_Navas" {{ $visitante->oficina == 'Mauricio_Navas' ? 'selected' : '' }}>Mauricio Navas</option>
-            <option value="Fundacion_Amados" {{ $visitante->oficina == 'Fundacion_Amados' ? 'selected' : '' }}>Fundacion Amados</option>
-            <!-- Agrega más opciones según sea necesario -->
-        </select>
+        <div class="form-group">
+            <label for="oficina">Oficina o Proyecto del que viene:</label>
+            <select name="oficina" id="oficina" required class="form-control">
+                <option value="" disabled selected>Seleccione una opción</option>
+                <option value="Valencia_Producciones" {{ $visitante->oficina == 'Valencia_Producciones' ? 'selected' : '' }}>Valencia Producciones</option>
+                <option value="Stargate" {{ $visitante->oficina == 'Stargate' ? 'selected' : '' }}>Stargate</option>
+                <option value="SMARTFILMS" {{ $visitante->oficina == 'SMARTFILMS' ? 'selected' : '' }}>SMARTFILMS</option>
+                <option value="Visual_Music" {{ $visitante->oficina == 'Visual_Music' ? 'selected' : '' }}>Visual Music</option>
+                <option value="Mauricio_Navas" {{ $visitante->oficina == 'Mauricio_Navas' ? 'selected' : '' }}>Mauricio Navas</option>
+                <option value="Fundacion_Amados" {{ $visitante->oficina == 'Fundacion_Amados' ? 'selected' : '' }}>Fundacion Amados</option>
+                <!-- Agrega más opciones según sea necesario -->
+            </select>
+        </div>
 
         <div class="form-group">
             <label for="fecha">Fecha:</label>
             <input type="text" name="fecha" id="fecha" class="form-control readonly" readonly>
             <input type="hidden" name="fecha-hidden" id="fecha-hidden">
         </div>
-        
+
         <div class="form-group">
             <label for="hora">Hora:</label>
             <input type="text" name="hora" id="hora" class="form-control readonly" readonly>
         </div>
-        
 
         <div class="form-group">
             <label for="a_quien_visita">A quien visita:</label>
@@ -189,7 +194,7 @@
                 title="Solo se permiten letras, números y espacios">{{ old('motivo') }}</textarea>
         </div>
 
-        <button type="submit" class="btn-primary">Enviar</button>
+        <button type="submit" class="btn btn-primary">Enviar</button>
 
         @if ($errors->any())
             <div class="alert">
@@ -202,23 +207,17 @@
         @endif
     </form>
 
-
-    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-    <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/plugins/timepicker.js"></script>
-
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const primeraVez = {!! isset($primeraVez) ? json_encode($primeraVez) : 'false' !!};
-
             const horaActual = new Date();
 
-            const fechaInput = flatpickr("#fecha", {
+            flatpickr("#fecha", {
                 enableTime: false,
                 dateFormat: "Y-m-d",
                 defaultDate: horaActual,
             });
 
-            const horaInput = flatpickr("#hora", {
+            flatpickr("#hora", {
                 enableTime: true,
                 noCalendar: true,
                 dateFormat: "H:i",
@@ -228,16 +227,12 @@
                 minTime: horaActual.getHours() + ':' + horaActual.getMinutes(),
                 maxTime: horaActual.getHours() + ':' + horaActual.getMinutes(),
             });
-
-            fechaInput.config.onChange.push((selectedDates, dateStr) => {
-                document.getElementById("fecha-hidden").value = dateStr;
-            });
-
-
         });
-
-
     </script>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 
 </html>

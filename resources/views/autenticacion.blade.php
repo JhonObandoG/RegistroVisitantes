@@ -5,95 +5,84 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro de Visitantes</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
     <style>
         body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f5f5f5;
-            margin: 0;
-            padding: 0;
+            background-color: #000;
+            color: #fff;
             display: flex;
-            align-items: center;
             justify-content: center;
-            flex-direction: column;
+            align-items: center;
             height: 100vh;
+            margin: 0;
         }
 
-        h1 {
-            color: #333;
+        .container {
+            background-color: rgba(128, 0, 128, 0.1);
+            border-radius: 0;
+            box-shadow: 0 8px 16px rgba(128, 0, 128, 0.8);
+            padding: 20px;
             text-align: center;
-            margin-bottom: 20px;
-        }
-
-        p {
-            color: #555;
-            text-align: center;
-            margin-bottom: 20px;
             max-width: 400px;
-            line-height: 1.5;
+            width: 100%;
+            margin: 20px;
+        }
+
+        h1,
+        p {
+            color: #fff;
         }
 
         form {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            margin-top: 20px;
         }
 
-        input {
-            padding: 10px;
-            margin-bottom: 10px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            width: 300px;
-            box-sizing: border-box;
+        .form-control {
+            background-color: #fff;
+            color: #000;
         }
 
-        button {
-            padding: 10px 20px;
-            background-color: #007bff;
+        .btn-primary {
+            background-color: #800080;
+            border-color: #800080;
+        }
+
+        #registro-mensaje {
             color: #fff;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
         }
 
-        button:hover {
-            background-color: #0056b3;
+        .btn-link {
+            color: #fff;
         }
-
-        a {
-            color: #007bff;
-            text-decoration: none;
-            margin-top: 10px;
-        }
-
-        a:hover {
-            text-decoration: underline;
-        }
-
-        @if (isset($noRegistrado) && $noRegistrado)
-            #registro-mensaje {
-                color: #ff0000;
-                margin-top: 10px;
-            }
-        @endif
     </style>
 </head>
 
 <body>
-    <h1>Registro de Visitantes</h1>
-    <p>Bienvenido al registro de visitantes de Valencia Producciones. Ingresa tu número de documento para registrar tu
-        visita o confirmar su salida.</p>
-    <form action="{{ route('procesar.autenticacion') }}" method="POST">
-        @csrf
-        <input type="text" name="documento" placeholder="Número de Documento" pattern="[0-9]{8,10}"
-            title="Debe contener entre 8 y 10 dígitos numéricos" required>
-        <button type="submit">Ingresar</button>
-    </form>
+    <div class="container">
+        <img src="{{ asset('logo.svg') }}" alt="Logo Valencia Producciones" style="width: 150px; height: auto;">
+        <h1 class="mt-4">Registro de Visitantes</h1>
+        <p>Bienvenido al registro de visitantes de Valencia Producciones. Ingresa tu número de documento para registrar
+            tu visita o confirmar su salida.</p>
+        <form action="{{ route('procesar.autenticacion') }}" method="POST">
+            @csrf
+            <div class="form-group">
+                <input type="text" name="documento" class="form-control" placeholder="Número de Documento"
+                    pattern="[0-9]{8,10}" title="Debe contener entre 8 y 10 dígitos numéricos" required>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Ingresar</button>
+        </form>
 
-    @if (isset($noRegistrado) && $noRegistrado)
-        <p id="registro-mensaje">El número de documento no está registrado.</p>
-        <a href="{{ route('registro') }}">Registrarse</a>
-    @endif
+        @if (isset($noRegistrado) && $noRegistrado)
+            <p id="registro-mensaje">El número de documento no está registrado.</p>
+            <a href="{{ route('registro') }}" class="mt-2 btn btn-link btn-block">Registrarse</a>
+        @endif
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 
 </html>
