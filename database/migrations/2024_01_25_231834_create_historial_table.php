@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('nombre');
             $table->string('apellido');
+            $table->string('tipo_documento');
             $table->string('documento', 10);
             $table->string('telefono'); 
             $table->string('oficina');

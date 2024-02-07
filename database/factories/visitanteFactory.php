@@ -22,6 +22,8 @@ class visitanteFactory extends Factory
         return [
             "nombre" => $this->faker->firstName,
             "apellido" => $this->faker->lastName,
+            "tipo_documento" => $this->faker->randomElement(['CC', 'TI']),
+
             "documento" => $this->faker->numberBetween(1000000000, 9999999999),
             "telefono" => $this->faker->phoneNumber,
             "oficina" => $this->faker->randomElement($oficinas),

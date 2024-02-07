@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('nombre')->nullable();
             $table->string('apellido')->nullable();
+            $table->string('tipo_documento')->nullable();
             $table->string('documento', 10)->unique()->nullable();
             $table->string('telefono')->nullable();
             $table->string('oficina')->nullable();

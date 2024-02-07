@@ -36,6 +36,7 @@ class IngresoController extends Controller
     }
     public function procesarFormulario(Request $request)
     {
+        $tipo_documento = $request->input('tipo_documento');
         $documento = $request->input('documento');
 
         $historial = Historial::where('documento', $documento)->latest()->first();
@@ -54,6 +55,7 @@ class IngresoController extends Controller
         $visitante->fill([
             'nombre' => $nombre,
             'apellido' => $apellido,
+            'tipo_documento' => $tipo_documento,
             'telefono' => $request->input('telefono'),
             'oficina' => $oficinaString,
         ]);
@@ -65,6 +67,7 @@ class IngresoController extends Controller
 
         $historial->nombre = $request->nombre;
         $historial->apellido = $request->apellido;
+        $historial->tipo_documento = $request->tipo_documento;
         $historial->documento = $request->documento;
         $historial->telefono = $request->telefono;
         $historial->oficina = $request->oficina;

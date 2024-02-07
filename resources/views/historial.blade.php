@@ -182,7 +182,8 @@
     <table>
         <thead>
             <tr>
-                <th>Nombre</th>
+                <th>Nombre Completo</th>
+                <th>tipo de documento</th>
                 <th>Documento</th>
                 <th>Fecha de Ingreso</th>
                 <th>Hora de Ingreso</th>
@@ -194,6 +195,7 @@
             @foreach ($historial as $ingreso)
                 <tr>
                     <td>{{ $ingreso->nombre }} {{ $ingreso->apellido }}</td>
+                    <td>{{ $ingreso->tipo_documento }}</td>
                     <td>{{ $ingreso->documento }}</td>
                     <td>{{ $ingreso->fecha_ingreso }}</td>
                     <td>{{ $ingreso->hora_ingreso }}</td>

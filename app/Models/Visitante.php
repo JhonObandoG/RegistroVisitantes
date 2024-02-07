@@ -9,5 +9,5 @@ class Visitante extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['documento', 'nombre', 'apellido', 'telefono', 'oficina'];
+    protected $fillable = ['documento', 'nombre', 'apellido', 'telefono', 'oficina', 'tipo_documento'];
 }

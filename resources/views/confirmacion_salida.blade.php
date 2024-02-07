@@ -68,9 +68,10 @@
         <h2>Confirmación de Salida</h2>
 
         <ul class="info-list">
-            <li><strong>Nombre:</strong> {{ $historial->nombre }}</li>
-            <li><strong>Apellido:</strong> {{ $historial->apellido }}</li>
+            <li><strong>Nombres:</strong> {{ $historial->nombre }}</li>
+            <li><strong>Apellidos:</strong> {{ $historial->apellido }}</li>
             <li><strong>Documento:</strong> {{ $historial->documento }}</li>
+            <li><strong>Tipo de documento:</strong> {{ $historial->tipo_documento }}</li>
             <li><strong>Oficina/Proyecto:</strong> {{ $historial->oficina }}</li>
             <li><strong>Motivo:</strong> {{ $historial->motivo }}</li>
             <li><strong>A quien visita:</strong> {{ $historial->a_quien_visita }}</li>

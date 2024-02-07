@@ -152,6 +152,16 @@
         </div>
 
         <div class="form-group">
+            <label for="tipo_documento">Tipo de Documento</label>
+            <select name="tipo_documento" id="tipo_documento" class="form-control" >
+                <option value="CC" {{ $visitante->tipo_documento == 'CC' ? 'selected' : '' }}>CC</option>
+                <option value="TI" {{ $visitante->tipo_documento == 'TI' ? 'selected' : '' }}>TI</option>
+                <!-- Agrega más opciones según tus necesidades -->
+            </select>
+        </div>
+        
+
+        <div class="form-group">
             <label for="telefono">Teléfono:</label>
             <input type="text" name="telefono" id="telefono" value="{{ $visitante->telefono ?? '' }}"
                 class="form-control">

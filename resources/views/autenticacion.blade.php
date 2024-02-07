@@ -68,6 +68,18 @@
         <form action="{{ route('procesar.autenticacion') }}" method="POST">
             @csrf
             <div class="form-group">
+                <label for="tipo_documento"></label>
+                <select name="tipo_documento" id="tipo_documento" class="form-control">
+
+                    <option value="CC">CC</option>
+                    <option value="TI">TI</option>
+                </select>
+                @error('tipo_documento')
+                    <span class="text-danger">{{ $message }}</span>
+                @enderror
+            </div>
+            
+            <div class="form-group">
                 <input type="text" name="documento" class="form-control" placeholder="Número de Documento"
                     pattern="[0-9]{8,10}" title="Debe contener entre 8 y 10 dígitos numéricos" required>
             </div>
