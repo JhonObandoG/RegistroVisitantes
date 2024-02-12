@@ -153,13 +153,16 @@
 
         <div class="form-group">
             <label for="tipo_documento">Tipo de Documento</label>
-            <select name="tipo_documento" id="tipo_documento" class="form-control" >
+            <select name="tipo_documento" id="tipo_documento" class="form-control">
                 <option value="CC" {{ $visitante->tipo_documento == 'CC' ? 'selected' : '' }}>CC</option>
                 <option value="TI" {{ $visitante->tipo_documento == 'TI' ? 'selected' : '' }}>TI</option>
-                <!-- Agrega más opciones según tus necesidades -->
+                <option value="Cedula_Extranjeria" {{ $visitante->tipo_documento == 'Cedula_Extranjeria' ? 'selected' : '' }}>Cedula Extranjeria</option>
+                <option value="Pasaporte" {{ $visitante->tipo_documento == 'Pasaporte' ? 'selected' : '' }}>Pasaporte</option>
             </select>
         </div>
         
+        
+
 
         <div class="form-group">
             <label for="telefono">Teléfono:</label>

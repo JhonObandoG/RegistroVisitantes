@@ -70,9 +70,10 @@
             <div class="form-group">
                 <label for="tipo_documento"></label>
                 <select name="tipo_documento" id="tipo_documento" class="form-control">
-
                     <option value="CC">CC</option>
                     <option value="TI">TI</option>
+                    <option value="Pasaporte">Pasaporte</option>
+                    <option value="Cedula_Extranjeria">Cedula Extranjeria</option>
                 </select>
                 @error('tipo_documento')
                     <span class="text-danger">{{ $message }}</span>
@@ -81,7 +82,10 @@
             
             <div class="form-group">
                 <input type="text" name="documento" class="form-control" placeholder="Número de Documento"
-                    pattern="[0-9]{8,10}" title="Debe contener entre 8 y 10 dígitos numéricos" required>
+                pattern="[A-Za-z0-9\s-]+" title="Caracter no permitido" required>
+                @error('documento')
+                    <span class="text-danger">{{ $message }}</span>
+                @enderror
             </div>
             <button type="submit" class="btn btn-primary btn-block">Ingresar</button>
         </form>
